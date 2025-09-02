@@ -1,9 +1,10 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #f0e4d6 0%, #d8bfd8 100%); /* Degradado más cálido y artístico */
+    /* Eliminamos el fondo anterior para el nuevo efecto RGB cambiante */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradientBackground 15s ease infinite;
+    animation: ColorChangeBackground 20s ease infinite; /* Cambiado el nombre de la animación */
     color: #333;
     line-height: 1.6;
     min-height: 100vh;
@@ -13,10 +14,22 @@ body {
     position: relative;
 }
 
-@keyframes gradientBackground {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes ColorChangeBackground { /* Nueva animación para el fondo RGB */
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 0% 50%;
+    }
+    75% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Efecto de fondo con partículas/burbujas - Eliminado para el nuevo fondo deslumbrante */
