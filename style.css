@@ -1,0 +1,497 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #f0e4d6 0%, #d8bfd8 100%); /* Degradado más cálido y artístico */
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Efecto de fondo con partículas/burbujas - Eliminado para el nuevo fondo deslumbrante */
+body::before {
+    content: none; /* Eliminar este efecto */
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%); /* Degradado rosa/naranja */
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.heart-loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    animation: heartBeat 1.2s infinite ease-in-out;
+}
+
+.heart-loader::before, .heart-loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 40px;
+    height: 60px;
+    background-color: #ff69b4; /* Rosa vibrante */
+    border-radius: 40px 40px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart-loader::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); background-color: #ff8c00; } /* Cambio de color al latir */
+    100% { transform: scale(1); }
+}
+
+.loading-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: white;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.progress-bar-container {
+    width: 250px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff69b4, #ff8c00); /* Degradado de progreso */
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+header {
+    background: linear-gradient(45deg, #e0b0ff, #ffc0cb); /* Degradado más suave y romántico */
+    color: white;
+    text-align: center;
+    padding: 3.5em 0;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 50% 30px;
+    border-bottom-right-radius: 50% 30px;
+    animation: none; /* Eliminado para el preloader */
+    margin-bottom: 60px; /* Mayor espacio inferior */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    animation: sparkle 20s infinite linear; /* Animación más lenta y sutil */
+}
+
+@keyframes sparkle {
+    0% { transform: rotate(0deg) scale(0.9); opacity: 0; }
+    50% { opacity: 1; transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(0.9); opacity: 0; }
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    font-size: 5.5em;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+    animation: fadeInDown 1.5s ease-out; /* Animación de entrada más pronunciada */
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    margin-top: 25px;
+    animation: fadeInUp 1.5s ease-out 0.5s; /* Animación de entrada más pronunciada */
+    position: relative;
+    z-index: 1;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Columnas más grandes */
+    gap: 50px;
+    padding: 60px;
+    max-width: 1700px;
+    margin: 80px auto;
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo más transparente para revelar el body */
+    border-radius: 40px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+    flex-grow: 1;
+    transform-style: preserve-3d; /* Para efectos 3D en el contenedor */
+    perspective: 1200px;
+}
+
+.gallery-item {
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 0 0 2px #f0d6e4; /* Sombra y borde interno elegante */
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease-in-out, border-color 0.4s ease-in-out;
+    position: relative;
+    background: linear-gradient(145deg, #fffafa, #f0f0f0); /* Degradado suave para el marco */
+    padding: 25px; /* Mayor padding para el marco */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 400px; /* Mayor altura mínima */
+    opacity: 0;
+    transform: scale(0.7) rotateY(20deg); /* Animación de aparición más elaborada */
+    animation: itemEnter 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes itemEnter {
+    to { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+
+.gallery-item:hover {
+    transform: translateY(-20px) scale(1.05) rotateY(5deg); /* Efecto de flotación 3D más pronunciado */
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 3px #ff8c00; /* Sombra más intensa y borde de color */
+    z-index: 10;
+    border-color: #ff8c00;
+}
+
+.gallery-item img {
+    max-width: 100%;
+    max-height: 280px; /* Mayor altura máxima para la imagen */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 15px auto;
+    border-radius: 10px; /* Bordes más redondeados */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Sombra más definida para la imagen */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    filter: none;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.04); /* Zoom al hover más pronunciado */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* Sombra más intensa */
+    filter: brightness(1.1); /* Ligero brillo al hover */
+}
+
+.image-number {
+    position: static;
+    margin-top: auto;
+    background-color: rgba(255, 105, 180, 0.9); /* Rosa más opaco */
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    opacity: 1;
+    transition: none;
+    transform: none;
+    z-index: 5;
+}
+
+.gallery-item:hover .image-number {
+    background-color: #ff8c00; /* Cambio de color al hover */
+}
+
+/* Lightbox Styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Fondo más oscuro para el lightbox */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: lightboxPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Animación de 'pop' más elástica */
+    box-shadow: 0 0 70px rgba(255, 255, 255, 0.6); /* Sombra más brillante */
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.3); /* Fondo sutil para el contenido del lightbox */
+    overflow: hidden;
+}
+
+@keyframes lightboxPopIn {
+    from { transform: scale(0.6) translateY(50px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    transition: opacity 0.4s ease-in-out;
+    filter: none;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: white;
+    font-size: 3.5em;
+    cursor: pointer;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.lightbox-close:hover {
+    transform: rotate(180deg) scale(1.1); /* Giro y escala al hover */
+    color: #ff8c00;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 4.5em;
+    cursor: pointer;
+    padding: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.lightbox-nav:hover {
+    color: #ff69b4;
+    transform: translateY(-50%) scale(1.1); /* Efecto de escala al hover */
+}
+
+footer {
+    background: linear-gradient(90deg, #555, #333); /* Degradado más oscuro */
+    color: white;
+    text-align: center;
+    padding: 3em 0;
+    margin-top: 80px;
+    font-size: 1.2em;
+    box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.25);
+    animation: footerAppear 1.2s ease-out forwards 2s;
+}
+
+@keyframes footerAppear {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    header {
+        padding: 2.5em 0;
+        margin-bottom: 40px;
+    }
+    header h1 {
+        font-size: 3.5em;
+    }
+
+    header p {
+        font-size: 1.3em;
+        max-width: 85%;
+    }
+
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 40px;
+        margin: 40px auto;
+    }
+
+    .gallery-item {
+        min-height: 350px;
+        padding: 20px;
+    }
+
+    .gallery-item img {
+        max-height: 220px;
+    }
+
+    .image-number {
+        font-size: 1em;
+        padding: 6px 15px;
+    }
+
+    .lightbox-close {
+        font-size: 3em;
+        top: 20px;
+        right: 30px;
+    }
+
+    .lightbox-nav {
+        font-size: 4em;
+        padding: 10px;
+    }
+    .lightbox-prev {
+        left: 15px;
+    }
+    .lightbox-next {
+        right: 15px;
+    }
+
+    footer {
+        padding: 2em 0;
+        margin-top: 50px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 2em 0;
+        margin-bottom: 30px;
+    }
+    header h1 {
+        font-size: 2.8em;
+    }
+
+    header p {
+        font-size: 1.1em;
+        max-width: 90%;
+    }
+
+    .gallery-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 30px;
+        margin: 30px auto;
+    }
+
+    .gallery-item {
+        min-height: 300px;
+        padding: 15px;
+    }
+
+    .gallery-item img {
+        max-height: 200px;
+    }
+
+    .image-number {
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+
+    .lightbox-content {
+        width: 95vw;
+        height: 95vh;
+    }
+
+    .lightbox-close {
+        font-size: 2.5em;
+        top: 15px;
+        right: 20px;
+    }
+
+    .lightbox-nav {
+        font-size: 3.5em;
+        padding: 8px;
+    }
+    .lightbox-prev {
+        left: 10px;
+    }
+    .lightbox-next {
+        right: 10px;
+    }
+
+    footer {
+        padding: 1.5em 0;
+        margin-top: 40px;
+        font-size: 0.9em;
+    }
+}
+
+/* Animaciones de entrada para el contenido principal después de la carga */
+body.loaded header,
+body.loaded main,
+body.loaded footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: contentFadeInUp 1s ease-out forwards;
+}
+
+body.loaded header { animation-delay: 0.2s; }
+body.loaded main { animation-delay: 0.4s; }
+body.loaded footer { animation-delay: 0.6s; }
+
+@keyframes contentFadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
